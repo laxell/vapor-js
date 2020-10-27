@@ -27,6 +27,11 @@ class Vapor
             options.progress = () => {};
         }
 
+        // Replace response.data.url with custom option
+        if( options.customHost && options.replaceHost ) {
+            response.data.url = response.data.url.replace(options.replaceHost,options.customHost);
+        }
+
         const cancelToken = options.cancelToken || ''
 
         await axios.put(response.data.url, file, {
